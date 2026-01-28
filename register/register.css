@@ -92,9 +92,8 @@ hr {
     padding-left: 3px;
 }
 
-.dateOfBirthBox select:hover {
-    /* outline: none; */
-    border: 1px solid #0866ff;
+.dateOfBirthBox select:focus {
+    border: 2px solid black;
 }
 
 .gender p {
@@ -203,7 +202,11 @@ hr {
     width: 50%;
 }
 
-.input-wrapper input.input-error {
+.reg-box input.input-error,
+select.input-error,
+.male.input-error,
+.female.input-error,
+.other.input-error {
     border: 1px solid red;
 }
 
@@ -283,7 +286,7 @@ hr {
 .email-error {
     position: absolute;
     top: 428px;
-    left: 212px;
+    left: 202px;
     background-color: #BE5854;
     color: white;
     font-size: 12px;
@@ -292,7 +295,7 @@ hr {
     display: none;
 }
 
-.email i{
+.email i {
     color: #BE5854;
     position: absolute;
     top: 68%;
@@ -312,7 +315,7 @@ hr {
     display: none;
 }
 
-.password i{
+.password i {
     color: #BE5854;
     position: absolute;
     top: 76%;

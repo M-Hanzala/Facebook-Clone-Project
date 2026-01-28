@@ -12,7 +12,9 @@ let year = document.getElementById("year");
 let dobIcon = document.getElementById("dobIcon");
 let dobError = document.getElementById("dobError");
 
-let gender = document.getElementsByName("gender");
+let male = document.getElementById("genderM");
+let female = document.getElementById("genderF");
+let other = document.getElementById("genderO");
 let genderIcon = document.getElementById("genderIcon");
 let genderError = document.getElementById("genderError");
 
@@ -37,7 +39,12 @@ const hideAllErrorMessage = () => {
     passwordError.style.display = "none";
 }
 
-// Which field first empty show field error message (Facebook behavior)
+// Gender Radio Checking
+const isGenderSelected = () => {
+    return male.checked || female.checked || other.checked;
+};
+
+// Which field first empty shows field error message (Facebook behavior)
 const errorShowMessage = () => {
     hideAllErrorMessage()
 
@@ -47,7 +54,7 @@ const errorShowMessage = () => {
         surnameError.style.display = "block";
     } else if (day.value.trim() === "" || month.value.trim() === "" || year.value.trim() === "") {
         dobError.style.display = "block";
-    } else if (gender.value.trim() === "") {
+    } else if (!isGenderSelected()) {
         genderError.style.display = "block";
     } else if (email.value.trim() === "") {
         emailError.style.display = "block";
@@ -79,7 +86,7 @@ const signUpHandler = () => {
     }
 
     // Date of birth
-    if (day.value.trim() === "" || month.value.trim() == "" || year.value.trim() == "") {
+    if (day.value === "" || month.value == "" || year.value == "") {
         day.classList.add("input-error");
         month.classList.add("input-error");
         year.classList.add("input-error");
@@ -89,32 +96,67 @@ const signUpHandler = () => {
         month.classList.remove("input-error");
         year.classList.remove("input-error");
         dobIcon.style.display = "none";
-    } 
-// ----------------------------- Ye Le
+    }
+
+    // Gender
+    if (!isGenderSelected()) {
+        genderIcon.style.display = "block";
+        document.querySelector(".male").classList.add("input-error");
+        document.querySelector(".female").classList.add("input-error");
+        document.querySelector(".other").classList.add("input-error");
+    } else {
+        genderIcon.style.display = "none";
+        document.querySelector(".male").classList.remove("input-error");
+        document.querySelector(".female").classList.remove("input-error");
+        document.querySelector(".other").classList.remove("input-error");
+    }
+
+    // Email
+    if (email.value.trim() === "" || !isValidEmailOrPhone) {
+        email.classList.add("input-error");
+        emailIcon.style.display = "block";
+    } else {
+        email.classList.remove("input-error");
+        emailIcon.style.display = "none";
+    }
+
+    // Password
+    if (password.value.trim() === "" || !isStrongPassword) {
+        password.classList.add("input-error");
+        passwordIcon.style.display = "block";
+    } else {
+        password.classList.remove("input-error");
+        passwordIcon.style.display = "none";
+    }
+
     errorShowMessage();
 }
 
-signUpBtn.addEventListener("click", signUpHandler());
+signUpBtn.addEventListener("click", signUpHandler);
 
-// Clicking error icon switches message (Facebook behavior)
+// Clicking errorIcon switches message (Facebook behavior)
 const iconSwitchesMessage = (errorId, icon) => {
     hideAllErrorMessage();
     errorId.style.display = "block";
     icon.style.display = "none";
 }
 
+// Reset Icons. Mean hide all errorMessages & shows all errorIcons.
 const resetErrorAndIcons = () => {
     // hide all errors
-    firstNameError.style.display = "none";
-    surnameError.style.display = "none";
+    hideAllErrorMessage();
 
     // show all icons
     firstNameIcon.style.display = "block";
     surnameIcon.style.display = "block";
+    dobIcon.style.display = "block";
+    genderIcon.style.display = "block";
+    emailIcon.style.display = "block";
+    passwordIcon.style.display = "block";
 }
 
 firstNameIcon.addEventListener("click", (e) => {
-    e.stopPropagation();
+    e.stopPropagation();   // Use for: don’t let this click reach document.body
     resetErrorAndIcons();
     iconSwitchesMessage(firstNameError, firstNameIcon);
 })
@@ -125,160 +167,112 @@ surnameIcon.addEventListener("click", (e) => {
     iconSwitchesMessage(surnameError, surnameIcon);
 })
 
-document.addEventListener("click", resetErrorAndIcons);
-
-
-
-
-
-
-// Step 1: Variables (same as you already use)
-// var firstName = document.getElementById("firstName");
-// var surName = document.getElementById("surName");
-
-// var firstNameIcon = document.getElementById("firstNameIcon");
-// var surNameIcon = document.getElementById("surnameIcon");
-
-// var firstNameError = document.getElementById("firstNameError");
-// var surNameError = document.getElementById("surnameError");
-
-// var signUpBtn = document.getElementById("signUpBtn");
-
-// Step 2: Hide ALL error messages (one simple function)
-// function hideAllErrorMessages() {
-//     firstNameError.style.display = "none";
-//     surNameError.style.display = "none";
-// }
-
-
-// This ensures only one error message shows at a time.
-
-// Step 3: Validate form (Facebook style)
-// function validateForm() {
-
-//     hideAllErrorMessages();   // first hide all messages
-
-//     // FIRST NAME
-//     if (firstName.value === "") {
-//         firstName.classList.add("input-error");
-//         firstNameIcon.style.display = "block";
-
-//         // show FIRST error only
-//         firstNameError.style.display = "block";
-//     } else {
-//         firstName.classList.remove("input-error");
-//         firstNameIcon.style.display = "none";
-//     }
-
-//     // SURNAME
-//     if (surName.value === "") {
-//         surName.classList.add("input-error");
-//         surNameIcon.style.display = "block";
-//     } else {
-//         surName.classList.remove("input-error");
-//         surNameIcon.style.display = "none";
-//     }
-// }
-
-
-// 👉 Notice:
-
-// Both fields get red border + icon
-
-// Only first name message appears first
-
-// Step 4: Button click
-// signUpBtn.onclick = function () {
-//     validateForm();
-// };
-
-// Step 5: Clicking error icon switches message (Facebook behavior)
-// firstNameIcon.onclick = function () {
-//     hideAllErrorMessages();
-//     firstNameError.style.display = "block";
-// };
-
-// surNameIcon.onclick = function () {
-//     hideAllErrorMessages();
-//     surNameError.style.display = "block";
-// };
-
-// ✅ Final Result (exactly what you wanted)
-
-// ✔ Click Sign Up
-// → Both inputs red
-// → Both icons visible
-// → Only First Name error message shows
-
-// ✔ Click Surname icon
-// → First error hides
-// → Surname error shows
-
-// ✔ Only ONE error message at a time
-
-// Why this is better for you right now ❤️
-
-// No loops
-
-// No arrow functions
-
-// No complex objects
-
-// You can debug line by line
-
-// You can add more fields easily by copy-pasting logic
-
-// If you want, next I can:
-
-// Explain each line in simple English
-
-// Add mobile / email field
-
-// Teach you for loop (not forEach) when you’re ready
-
-// Refactor this step-by-step into cleaner code
-
-// You’re doing great — this is exactly how real devs learn 💪
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const showError = (errorId, iconId, inputId) => {
-//     let errorIcon = document.getElementById(iconId);
-//     let error = document.getElementById(errorId);
-//     if (firstName.value === "") {
-//         error.style.display = "block";
-//         errorIcon.style.display = "block";
-//         inputId.classList.add("input-error");
-//     }
-// }
-
-// const hideError = (errorId, iconId, inputId) => {
-//     let errorIcon = document.getElementById(iconId);
-//     let error = document.getElementById(errorId);
-//     if (firstName.value === "") {
-//         error.style.display = "none";
-//         errorIcon.style.display = "none";
-//         inputId.classList.remove("input-error");
-//     }
-// }
-
-// showError("surnameError", "surnameIcon", surname);
+dobIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resetErrorAndIcons();
+    iconSwitchesMessage(dobError, dobIcon);
+})
+
+genderIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resetErrorAndIcons();
+    iconSwitchesMessage(genderError, genderIcon);
+})
+
+emailIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resetErrorAndIcons();
+    iconSwitchesMessage(emailError, emailIcon);
+})
+
+passwordIcon.addEventListener("click", (e) => {
+    e.stopPropagation();
+    resetErrorAndIcons();
+    iconSwitchesMessage(passwordError, passwordIcon);
+})
+
+// document.addEventListener("click", resetErrorAndIcons);
+
+// ------------
+
+// Helper function for show & hide error
+const showError = (errorEl, iconEl) => {
+    errorEl.style.display = "block";
+    if (iconEl) iconEl.style.display = "block";
+};
+const hideError = (errorEl, iconEl) => {
+    errorEl.style.display = "none";
+    if (iconEl) iconEl.style.display = "none";
+};
+
+// First & Sur Name on typing or filled 
+firstName.addEventListener("input", () => {
+    if (firstName.value.trim() !== "") {
+        firstName.classList.remove("input-error");
+        hideError(firstNameError, firstNameIcon);
+    }
+});
+
+surname.addEventListener("input", () => {
+    if (surname.value.trim() !== "") {
+        surname.classList.remove("input-error");
+        hideError(surnameError, surnameIcon);
+    }
+});
+
+// For Date & Month & Year. If Selected
+const dobErrorFixing = () => {
+    if (day.value && month.value && year.value) {
+        day.classList.remove("input-error");
+        month.classList.remove("input-error");
+        year.classList.remove("input-error");
+        hideError(dobError, dobIcon);
+    }
+}
+
+day.addEventListener("change", dobErrorFixing);
+month.addEventListener("change", dobErrorFixing);
+year.addEventListener("change", dobErrorFixing);
+
+// If Gender is selected error disapppears
+const genderErrorFixing = () => {
+    if (male.checked || female.checked || other.checked) {
+        document.querySelector(".male").classList.remove("input-error");
+        document.querySelector(".female").classList.remove("input-error");
+        document.querySelector(".other").classList.remove("input-error");
+        hideError(genderError, genderIcon);
+    }
+}
+
+male.addEventListener("change", genderErrorFixing);
+female.addEventListener("change", genderErrorFixing);
+other.addEventListener("change", genderErrorFixing);
+
+// For email & phone that is valid or not
+function isValidEmailOrPhone(value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10,15}$/;
+    return emailRegex.test(value) || phoneRegex.test(value);
+};
+
+email.addEventListener("input", () => {
+    if (isValidEmailOrPhone(email.value.trim())) {
+        email.classList.remove("input-error");
+        hideError(emailError, emailIcon);
+    }
+});
+
+// For password that is strong and valid or not 
+function isStrongPassword(value) {
+    return value.length >= 6 && /[A-Za-z]/.test(value) && /[0-9]/.test(value);
+};
+
+password.addEventListener("input", () => {
+    if (isStrongPassword(password.value.trim())) {
+        password.classList.remove("input-error");
+        hideError(passwordError, passwordIcon);
+    }
+});
+
+
+// Form Chala kr dekhna hai kya kya issue hain ! Facebook se compare krna hai

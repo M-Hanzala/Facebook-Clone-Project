@@ -54,6 +54,7 @@
                     <i class="fa-solid fa-circle-exclamation dob-icon" id="dobIcon"></i>
                     <small class="dob-error" id="dobError">Please make sure that you enter your real date of
                         birth.</small>
+
                     <select id="day">
                         <option value="">Day</option>
 
@@ -89,6 +90,7 @@
                         <option value="30">30</option>
                         <option value="31">31</option>
                     </select>
+
                     <!-- Month -->
                     <select id="month">
                         <option value="">Month</option>
@@ -106,6 +108,7 @@
                         <option value="11">November</option>
                         <option value="12">December</option>
                     </select>
+
                     <!-- Year -->
                     <select id="year">
                         <option value="">Year</option>
@@ -236,9 +239,9 @@
                     <i class="fa-solid fa-circle-exclamation gender-icon" id="genderIcon"></i>
                     <small class="gender-error" id="genderError">Please choose a gender.</small>
 
-                    <div class="male"><input type="radio" name="gender" value="male"> Male</div>
-                    <div class="female"><input type="radio" name="gender" value="female"> Female</div>
-                    <div class="other"><input type="radio" name="gender" value="other"> Other</div>
+                    <div class="male"><input type="radio" name="gender" id="genderM" value="male"> Male</div>
+                    <div class="female"><input type="radio" name="gender" id="genderF" value="female"> Female</div>
+                    <div class="other"><input type="radio" name="gender" id="genderO" value="other"> Other</div>
                 </div>
             </div>
 
@@ -246,7 +249,7 @@
             <div class="emailPass">
                 <div class="email">
                     <i class="fa-solid fa-circle-exclamation email-icon" id="emailIcon"></i>
-                    <small class="email-error" id="emailError">Please enter your email or mobile number.</small>
+                    <small class="email-error" id="emailError">Please enter a valid email or mobile number.</small>
                     <input type="text" placeholder="Mobile number or email address" id="email">
                 </div>
 
