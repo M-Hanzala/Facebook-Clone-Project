@@ -44,8 +44,8 @@ const isGenderSelected = () => {
     return male.checked || female.checked || other.checked;
 };
 
-// Which field first empty shows field error message (Facebook behavior)
-const errorShowMessage = () => {
+// Which field first empty shows its field error message (Facebook behavior)
+const firstErrorShowMessage = () => {
     hideAllErrorMessage()
 
     if (firstName.value.trim() === "") {
@@ -63,6 +63,38 @@ const errorShowMessage = () => {
     }
 }
 
+// If any field is focused and empty so it show error 
+const showErrorOnFocusIfEmpty = (field, errorElem) => {
+    field.addEventListener("focus", () => {
+        if (field.value.trim() === "") {
+            hideAllErrorMessage();
+            errorElem.style.display = "block";
+        }
+    })
+
+    field.addEventListener("blur", hideAllErrorMessage);
+}
+const showErrorOnFocusIfEmptyForDob = () => {
+    dob.addEventListener("focusin", () => {
+        if (day.value === "" || month.value === "" || year.value === "") {
+            hideAllErrorMessage();
+            dobError.style.display = "block";
+        }
+    });
+}
+
+// Email and Phone Validation Regex
+function isValidEmailOrPhone(value) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const phoneRegex = /^[0-9]{10,15}$/;
+    return emailRegex.test(value) || phoneRegex.test(value);
+};
+
+// Strong Password Validation Regex
+function isStrongPassword(value) {
+    return value.length >= 6 && /[A-Za-z]/.test(value) && /[0-9]/.test(value);
+};
+
 // Sign up Handler
 const signUpHandler = () => {
     hideAllErrorMessage();
@@ -73,7 +105,7 @@ const signUpHandler = () => {
         firstNameIcon.style.display = "block";
     } else {
         firstName.classList.remove("input-error");
-        firstNameIcon.style.display = "none"
+        firstNameIcon.style.display = "none";
     }
 
     // Surname
@@ -112,7 +144,8 @@ const signUpHandler = () => {
     }
 
     // Email
-    if (email.value.trim() === "" || !isValidEmailOrPhone) {
+    if (email.value.trim() === "" ||
+        !isValidEmailOrPhone(email.value.trim())) {
         email.classList.add("input-error");
         emailIcon.style.display = "block";
     } else {
@@ -121,7 +154,8 @@ const signUpHandler = () => {
     }
 
     // Password
-    if (password.value.trim() === "" || !isStrongPassword) {
+    if (password.value.trim() === "" ||
+        !isStrongPassword(password.value.trim())) {
         password.classList.add("input-error");
         passwordIcon.style.display = "block";
     } else {
@@ -129,9 +163,14 @@ const signUpHandler = () => {
         passwordIcon.style.display = "none";
     }
 
-    errorShowMessage();
-}
+    firstErrorShowMessage();
 
+    showErrorOnFocusIfEmpty(firstName, firstNameError);
+    showErrorOnFocusIfEmpty(surname, surnameError);
+    showErrorOnFocusIfEmpty(email, emailError);
+    showErrorOnFocusIfEmpty(password, passwordError);
+    showErrorOnFocusIfEmptyForDob();
+}
 signUpBtn.addEventListener("click", signUpHandler);
 
 // Clicking errorIcon switches message (Facebook behavior)
@@ -140,6 +179,22 @@ const iconSwitchesMessage = (errorId, icon) => {
     errorId.style.display = "block";
     icon.style.display = "none";
 }
+
+// Function for solve fucking situation error! Means if some inputs fill or i click on any errorIcon not all icon display => block
+const syncIconsWithValidationState = () => {
+    if (firstName.value.trim() !== "") firstNameIcon.style.display = "none";
+    if (surname.value.trim() !== "") surnameIcon.style.display = "none";
+
+    if (day.value && month.value && year.value) dobIcon.style.display = "none";
+
+    if (isGenderSelected()) genderIcon.style.display = "none";
+
+    if (email.value.trim() !== "" && isValidEmailOrPhone(email.value.trim()))
+        emailIcon.style.display = "none";
+
+    if (password.value.trim() !== "" && isStrongPassword(password.value.trim()))
+        passwordIcon.style.display = "none";
+};
 
 // Reset Icons. Mean hide all errorMessages & shows all errorIcons.
 const resetErrorAndIcons = () => {
@@ -158,42 +213,48 @@ const resetErrorAndIcons = () => {
 firstNameIcon.addEventListener("click", (e) => {
     e.stopPropagation();   // Use for: don’t let this click reach document.body
     resetErrorAndIcons();
+    syncIconsWithValidationState();
     iconSwitchesMessage(firstNameError, firstNameIcon);
 })
 
 surnameIcon.addEventListener("click", (e) => {
     e.stopPropagation();
     resetErrorAndIcons();
+    syncIconsWithValidationState();
     iconSwitchesMessage(surnameError, surnameIcon);
 })
 
 dobIcon.addEventListener("click", (e) => {
     e.stopPropagation();
     resetErrorAndIcons();
+    syncIconsWithValidationState();
     iconSwitchesMessage(dobError, dobIcon);
 })
 
 genderIcon.addEventListener("click", (e) => {
     e.stopPropagation();
     resetErrorAndIcons();
+    syncIconsWithValidationState();
     iconSwitchesMessage(genderError, genderIcon);
 })
 
 emailIcon.addEventListener("click", (e) => {
     e.stopPropagation();
     resetErrorAndIcons();
+    syncIconsWithValidationState();
     iconSwitchesMessage(emailError, emailIcon);
 })
 
 passwordIcon.addEventListener("click", (e) => {
     e.stopPropagation();
     resetErrorAndIcons();
+    syncIconsWithValidationState();
     iconSwitchesMessage(passwordError, passwordIcon);
 })
 
 // document.addEventListener("click", resetErrorAndIcons);
 
-// ------------
+// ----------------------------------
 
 // Helper function for show & hide error
 const showError = (errorEl, iconEl) => {
@@ -205,7 +266,7 @@ const hideError = (errorEl, iconEl) => {
     if (iconEl) iconEl.style.display = "none";
 };
 
-// First & Sur Name on typing or filled 
+// First & Sur Name on typing or filled error disappears 
 firstName.addEventListener("input", () => {
     if (firstName.value.trim() !== "") {
         firstName.classList.remove("input-error");
@@ -220,7 +281,7 @@ surname.addEventListener("input", () => {
     }
 });
 
-// For Date & Month & Year. If Selected
+// For Date & Month & Year. If Selected error disappears
 const dobErrorFixing = () => {
     if (day.value && month.value && year.value) {
         day.classList.remove("input-error");
@@ -248,31 +309,18 @@ male.addEventListener("change", genderErrorFixing);
 female.addEventListener("change", genderErrorFixing);
 other.addEventListener("change", genderErrorFixing);
 
-// For email & phone that is valid or not
-function isValidEmailOrPhone(value) {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phoneRegex = /^[0-9]{10,15}$/;
-    return emailRegex.test(value) || phoneRegex.test(value);
-};
-
+// For email & phone if start typping or filled error diappears 
 email.addEventListener("input", () => {
-    if (isValidEmailOrPhone(email.value.trim())) {
+    if (email.value.trim() !== "") {
         email.classList.remove("input-error");
         hideError(emailError, emailIcon);
     }
 });
 
-// For password that is strong and valid or not 
-function isStrongPassword(value) {
-    return value.length >= 6 && /[A-Za-z]/.test(value) && /[0-9]/.test(value);
-};
-
+// For password if start typing or filled error diappears
 password.addEventListener("input", () => {
-    if (isStrongPassword(password.value.trim())) {
+    if (password.value.trim() !== "") {
         password.classList.remove("input-error");
         hideError(passwordError, passwordIcon);
     }
 });
-
-
-// Form Chala kr dekhna hai kya kya issue hain ! Facebook se compare krna hai

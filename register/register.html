@@ -45,15 +45,17 @@
 
             <!-- DOB -->
             <div class="dob">
-                <p>
-                    Date of birth <i class="fa-solid fa-circle-question"></i>
-                </p>
-
-                <!-- Date -->
-                <div class="dateOfBirthBox">
+                <div class="dob-input">
                     <i class="fa-solid fa-circle-exclamation dob-icon" id="dobIcon"></i>
+                    <p>
+                        Date of birth <i class="fa-solid fa-circle-question"></i>
+                    </p>
                     <small class="dob-error" id="dobError">Please make sure that you enter your real date of
                         birth.</small>
+                </div>
+
+                <!-- Date -->
+                <div class="dateOfBirthBox" id="dob">
 
                     <select id="day">
                         <option value="">Day</option>
@@ -231,14 +233,15 @@
 
             <!-- Gender -->
             <div class="gender">
-                <p>
-                    Gender <i class="fa-solid fa-circle-question"></i>
-                </p>
-
-                <div class="genderBox">
+                <div class="gender-input">
                     <i class="fa-solid fa-circle-exclamation gender-icon" id="genderIcon"></i>
                     <small class="gender-error" id="genderError">Please choose a gender.</small>
+                    <p>
+                        Gender <i class="fa-solid fa-circle-question"></i>
+                    </p>
+                </div>
 
+                <div class="genderBox">
                     <div class="male"><input type="radio" name="gender" id="genderM" value="male"> Male</div>
                     <div class="female"><input type="radio" name="gender" id="genderF" value="female"> Female</div>
                     <div class="other"><input type="radio" name="gender" id="genderO" value="other"> Other</div>
@@ -247,15 +250,16 @@
 
             <!-- Email & Password -->
             <div class="emailPass">
-                <div class="email">
+                <div class="email-input">
                     <i class="fa-solid fa-circle-exclamation email-icon" id="emailIcon"></i>
                     <small class="email-error" id="emailError">Please enter a valid email or mobile number.</small>
                     <input type="text" placeholder="Mobile number or email address" id="email">
                 </div>
 
-                <div class="password">
+                <div class="password-input">
                     <i class="fa-solid fa-circle-exclamation pass-icon" id="passIcon"></i>
-                    <small class="pass-error" id="passError">Please enter the strong password.</small>
+                    <small class="pass-error" id="passError">Enter a combination of at least six numbers, letters and
+                        punctuation marks (such as ! &).</small>
                     <input type="text" placeholder="New password" id="password">
                 </div>
             </div>

@@ -18,7 +18,7 @@ body {
     flex-direction: column;
     min-height: 100%;
     width: 100%;
-    margin-top: 18px;
+    margin-top: 8px;
     padding-bottom: 40px;
 }
 
@@ -151,8 +151,7 @@ hr {
 .terms p {
     color: gray;
     font-size: 12px;
-    margin-top: 20px;
-    margin-bottom: 15px;
+    margin-bottom: 12px;
 }
 
 .terms a {
@@ -162,7 +161,7 @@ hr {
 
 .signUp-btn {
     width: 100%;
-    height: 40px;
+    height: 35px;
     margin: 10px auto;
     display: flex;
     justify-content: center;
@@ -170,7 +169,7 @@ hr {
 
 .signUp-btn button {
     background-color: #119F16;
-    width: 50%;
+    width: 45%;
     height: 100%;
     border-radius: 6px;
     border: none;
@@ -243,10 +242,14 @@ select.input-error,
     display: none;
 }
 
+.dob-input {
+    position: relative;
+}
+
 .dob-error {
     position: absolute;
-    top: 305px;
-    left: 145px;
+    top: 25px;
+    left: -320px;
     background-color: #BE5854;
     color: white;
     font-size: 12px;
@@ -255,18 +258,25 @@ select.input-error,
     display: none;
 }
 
-.dateOfBirthBox i {
+.dob-icon {
     color: #BE5854;
     position: absolute;
-    top: 44%;
-    right: 472px;
+    top: 10%;
+    right: 9px;
+}
+
+.dob-input i.dob-icon {
     display: none;
+}
+
+.gender-input {
+    position: relative;
 }
 
 .gender-error {
     position: absolute;
-    top: 376px;
-    left: 305px;
+    top: 24px;
+    left: -160px;
     background-color: #BE5854;
     color: white;
     font-size: 12px;
@@ -275,18 +285,26 @@ select.input-error,
     display: none;
 }
 
-.genderBox i {
+.gender-icon {
     color: #BE5854;
     position: absolute;
-    top: 55%;
-    right: 472px;
+    top: 5%;
+    right: 8px;
+}
+
+.gender-input i.gender-icon {
     display: none;
+}
+
+.email-input,
+.password-input {
+    position: relative;
 }
 
 .email-error {
     position: absolute;
-    top: 428px;
-    left: 202px;
+    top: 5px;
+    left: -264px;
     background-color: #BE5854;
     color: white;
     font-size: 12px;
@@ -295,18 +313,26 @@ select.input-error,
     display: none;
 }
 
-.email i {
+.email-icon {
     color: #BE5854;
     position: absolute;
-    top: 68%;
-    right: 472px;
+    top: 35%;
+    right: 8px;
+}
+
+.email-input i.email-icon {
     display: none;
+}
+
+.password-input {
+    position: relative;
 }
 
 .pass-error {
     position: absolute;
-    top: 476px;
-    left: 254px;
+    top: 1px;
+    left: -305px;
+    max-width: 300px;
     background-color: #BE5854;
     color: white;
     font-size: 12px;
@@ -315,10 +341,17 @@ select.input-error,
     display: none;
 }
 
-.password i {
+.pass-icon {
     color: #BE5854;
     position: absolute;
-    top: 76%;
-    right: 472px;
+    top: 40%;
+    right: 8px;
+}
+
+.password-input i.pass-icon {
     display: none;
 }
+
+/* #firstName:focus+.first-name-error {
+    display: block;
+} */
