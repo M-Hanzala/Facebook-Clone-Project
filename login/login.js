@@ -9,10 +9,12 @@ let passwordError = document.getElementById("pass-error");
 let loginBtn = document.getElementById("login");
 let createNewAccount = document.getElementById("signUpBtn");
 
+// Window location to Signup Page
 createNewAccount.addEventListener("click", () => {
     window.location.href = 'file:///D:/Muhammad%20Hanzala/Project/Facebook/register/register.html';
 })
 
+// Sweet Alert Function
 const sweetAlert = (icon, title, text) => {
     Swal.fire({
         icon: icon,           //"error"
@@ -46,9 +48,11 @@ const loginHandler = () => {
     if (email.value.trim() === "") {
         email.classList.add("input-error");
         emailIcon.style.display = "block";
+        emailError.style.display = "block";
     } else {
         email.classList.remove("input-error");
         emailIcon.style.display = "none";
+        emailError.style.display = "none";
     }
 
     // Password
@@ -62,5 +66,46 @@ const loginHandler = () => {
 
     showErrorOnFocusIfEmpty(email, emailError);
     showErrorOnFocusIfEmpty(password, passwordError);
+
+    // Get previous user from local storage
+    let getPrevUsers = JSON.parse(localStorage.getItem("users"));
+    let isEmailExist = false;
+    let isPasswordExist = false;
+
+    for (var i = 0; i < getPrevUsers.length; i++) {
+        let user = getPrevUsers[i];
+
+        if (user?.email == email.value.trim()) {
+            isEmailExist = true;
+        }
+        if (user?.password == password.value.trim()) {
+            isPasswordExist = true;
+        }
+
+        // If email exist and just password is incorrect so on show error on password
+        if (isEmailExist == true && isPasswordExist == false) {
+            email.classList.remove("input-error");
+            emailIcon.style.display = "none";
+            emailError.style.display = "none";
+            password.classList.add("input-error");
+            passwordIcon.style.display = "block";
+            passwordError.style.display = "block";
+        }
+
+        // If both exist so login successful
+        if (isEmailExist == true && isPasswordExist == true) {
+            sweetAlert("success", "Login Successfully", "Congratulations! Login Successfully");
+            email.classList.remove("input-error");
+            emailIcon.style.display = "none";
+            emailError.style.display = "none";
+            password.classList.remove("input-error");
+            passwordIcon.style.display = "none";
+            setTimeout(() => {
+                window.location.href = 'file:///D:/Muhammad%20Hanzala/Project/Facebook/dashboard/dashboard.html'
+            }, 1200)
+        }
+    }
+
+
 }
 loginBtn.addEventListener("click", loginHandler);

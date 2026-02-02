@@ -18,18 +18,18 @@ body {
     flex-direction: column;
     min-height: 100%;
     width: 100%;
-    margin-top: 8px;
+    margin-top: 6px;
     padding-bottom: 40px;
 }
 
 .logo>img {
     height: 100px;
-    width: 300px;
+    width: 280px;
 }
 
 .reg-box {
     /* height: 800px; */
-    width: 450px;
+    width: 400px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 8px;
     background-color: white;
@@ -37,12 +37,13 @@ body {
 }
 
 .header h2 {
-    font-size: 25px;
+    font-size: 22px;
     text-align: center;
     margin-bottom: 5px;
 }
 
 .header p {
+    font-size: 14px;
     text-align: center;
     color: rgb(100, 98, 98);
     margin-bottom: 10px;
@@ -145,12 +146,12 @@ hr {
 }
 
 .terms {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .terms p {
     color: gray;
-    font-size: 12px;
+    font-size: 10px;
     margin-bottom: 12px;
 }
 
