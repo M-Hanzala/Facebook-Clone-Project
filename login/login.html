@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Log in to Facebook</title>
     <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 
 <body>
@@ -23,9 +24,25 @@
 
             <!-- Login Box -->
             <div class="login-box">
-                <input type="text" placeholder="Email address or phone number">
-                <input type="password" placeholder="Password">
-                <button class="login-btn">Log in</button>
+
+                <div class="input-wrapper email-i">
+                    <i class="fa-solid fa-triangle-exclamation email-icon" id="email-icon"></i>
+                    <input type="text" id="email" placeholder="Email address or phone number" class="email">
+                    <p class="email-error" id="email-error">
+                        The email address or mobile number you entered isn't connected to an account.
+                        <a href="#">Create your account and log in.</a>
+                    </p>
+                </div>
+
+                <div class="input-wrapper pass-i">
+                    <i class="fa-solid fa-triangle-exclamation pass-icon" id="pass-icon"></i>
+                    <input type="password" id="password" placeholder="Password" class="password">
+                    <p class="pass-error" id="email-error">
+                        Please enter a correct password.
+                    </p>
+                </div>
+
+                <button class="login-btn" id="login">Log in</button>
 
                 <div class="forgot">
                     <a href="#">Forgotten password?</a>
@@ -33,7 +50,7 @@
 
                 <hr>
 
-                <button class="create-btn">Create new account</button>
+                <button class="create-btn" id="signUpBtn">Create new account</button>
             </div>
 
             <div class="txt">
@@ -46,6 +63,8 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="login.js"></script>
 </body>
 
 </html>

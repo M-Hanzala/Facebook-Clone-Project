@@ -15,6 +15,7 @@ let dobError = document.getElementById("dobError");
 let male = document.getElementById("genderM");
 let female = document.getElementById("genderF");
 let other = document.getElementById("genderO");
+let gender = document.getElementById("gender");
 let genderIcon = document.getElementById("genderIcon");
 let genderError = document.getElementById("genderError");
 
@@ -324,3 +325,55 @@ password.addEventListener("input", () => {
         hideError(passwordError, passwordIcon);
     }
 });
+
+// ----------------------------------
+
+const sweetAlert = (icon, title, text) => {
+    Swal.fire({
+        icon: icon,           //"error"
+        title: title,        //"Oops..."
+        text: text,         //"Something went wrong!"
+    });
+}
+
+// Signup User value store in local input.
+const signupUserValueStore = () => {
+    let users = localStorage.getItem("users");
+
+    if (users) {
+        users = JSON.parse(users);
+    } else {
+        users = [];
+    }
+
+    var userObj = {
+        firstName: firstName.value,
+        surName: surname.value,
+        day: day.value,
+        month: month.value,
+        year: year.value,
+        gender,
+        email: email.value,
+        password: password.value,
+    };
+
+    if (male.checked) userObj.gender = male.value;
+    else if (female.checked) userObj.gender = female.value;
+    else if (other.checked) userObj.gender = other.value;
+
+    if (firstName.value.trim() !== "" && surname.value.trim() !== "" &&
+        day.value !== "" && month.value !== "" && year.value !== "" &&
+        isGenderSelected() && email.value.trim() !== "" && isValidEmailOrPhone(email.value.trim()) &&
+        password.value.trim() !== "" && isStrongPassword(password.value.trim())
+    ) {
+        users.push(userObj);  //overwrite nhi add horaha hai 
+        localStorage.setItem("users", JSON.stringify(users));
+
+        sweetAlert("success", "Sign Up Done", "Congratulations! Signup Successfully")
+        setTimeout(() => {
+            window.location.href = 'file:///D:/Muhammad%20Hanzala/Project/Facebook/dashboard/dashboard.html'
+        }, 1200)  //Delay on changing windows location for display alert
+    }
+}
+
+signUpBtn.addEventListener("click", signupUserValueStore);
