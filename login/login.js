@@ -82,6 +82,15 @@ const loginHandler = () => {
             isPasswordExist = true;
         }
 
+        // If email and password is not exist so show error
+        if (isEmailExist == false && isPasswordExist == false) {
+            email.classList.add("input-error");
+            emailIcon.style.display = "block";
+            emailError.style.display = "block";
+            password.classList.add("input-error");
+            passwordIcon.style.display = "block";
+        }
+
         // If email exist and just password is incorrect so on show error on password
         if (isEmailExist == true && isPasswordExist == false) {
             email.classList.remove("input-error");
