@@ -371,7 +371,7 @@ const signupUserValueStore = () => {
 
         sweetAlert("success", "Sign Up Done", "Congratulations! Signup Successfully")
         setTimeout(() => {
-            window.location.href = 'file:///D:/Muhammad%20Hanzala/Project/Facebook/dashboard/dashboard.html'
+            window.location.href = '/dashboard/dashboard.html';
         }, 1200)  //Delay on changing windows location for display alert
     }
 }

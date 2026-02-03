@@ -11,7 +11,7 @@ let createNewAccount = document.getElementById("signUpBtn");
 
 // Window location to Signup Page
 createNewAccount.addEventListener("click", () => {
-    window.location.href = 'file:///D:/Muhammad%20Hanzala/Project/Facebook/register/register.html';
+    window.location.href = '/register/register.html';
 })
 
 // Sweet Alert Function
@@ -101,7 +101,7 @@ const loginHandler = () => {
             password.classList.remove("input-error");
             passwordIcon.style.display = "none";
             setTimeout(() => {
-                window.location.href = 'file:///D:/Muhammad%20Hanzala/Project/Facebook/dashboard/dashboard.html'
+                window.location.href = '/dashboard/dashboard.html'
             }, 1200)
         }
     }
