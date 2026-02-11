@@ -15,6 +15,7 @@ body {
     align-items: center;
     padding: 6px 10px;
     background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .header-left {
@@ -66,4 +67,75 @@ body {
     background-color: #F0F2F5;
     border-radius: 200px;
     padding: 10px;
+    cursor: pointer;
+}
+
+.header-right img {
+    height: 40px;
+    border-radius: 200px;
+    cursor: pointer;
+}
+
+.Profile-Pic i {
+    font-size: 12px;
+    padding: 1px;
+    border: 1px solid white;
+    position: relative;
+    right: 18px;
+}
+
+.main {
+    display: flex;
+    gap: 20px;
+    padding: 15px;
+}
+
+.Dashboard-Left {
+    display: flex;
+    align-items: center;
+    width: 276px;
+    gap: 15px;
+}
+
+.Dashboard-Left div {
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+}
+
+.Dashboard-Left img {
+    height: 40px;
+    border-radius: 200px;
+}
+
+.Dashboard-Mid {
+    flex: 1;
+    max-width: 680px;
+}
+
+.Dash-nav {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.Dash-nav div {
+    display: flex;
+    align-items: center;
+}
+
+.Dash-nav input {
+    flex: 1;
+    border: none;
+    background-color: #f0f2f5;
+    padding: 10px 15px;
+    border-radius: 20px;
+    outline: none;
+}
+
+.Dash-nav img {
+    height: 40px;
 }
