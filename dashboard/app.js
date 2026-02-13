@@ -2,7 +2,7 @@ const icons = document.querySelectorAll(".header-mid i");
 const homeIcon = document.getElementById("home");
 
 icons.forEach(icon => {
-    homeIcon.style.color = "#0866FF";
+    homeIcon.style.color = "#0866ff";
 
     icon.addEventListener("click", () => {
 

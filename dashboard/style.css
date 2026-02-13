@@ -100,7 +100,8 @@ body {
     padding-top: 10px;
 }
 
-.left-item {
+.left-item,
+.left-item-profile {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -109,13 +110,18 @@ body {
     cursor: pointer;
 }
 
-.left-item:hover {
+.left-item:hover,
+.left-item-profile:hover {
     background-color: #E4E6EB;
 }
 
-.Dashboard-Left img {
-    height: 40px;
-    border-radius: 200px;
+.left-item-profile img {
+    height: 30px;
+    border-radius: 50%;
+}
+
+.left-item img {
+    height: 30px;
 }
 
 /* Dashboard Center */
@@ -171,6 +177,12 @@ body {
     cursor: pointer;
 }
 
+/* Story Container */
+.story-container {
+    display: flex;
+    gap: 10px;
+}
+
 /* Dashboard Right Side */
 .Dashboard-Right {
     width: 280px;
@@ -196,6 +208,11 @@ body {
 
 .contacts i {
     height: 20px;
+    padding: 0px 5px;
+}
+
+.contacts i:hover {
+    cursor: pointer;
 }
 
 .groups {
@@ -213,8 +230,14 @@ body {
 }
 
 .groups div {
-    padding: 10px 0px;
+    padding: 15px 5px;
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.group-items:hover {
+    cursor: pointer;
+    background-color: #E4E6EB;
+    border-radius: 8px;
 }
