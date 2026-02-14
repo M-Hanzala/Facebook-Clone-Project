@@ -16,6 +16,10 @@ body {
     padding: 6px 10px;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
 }
 
 .header-left {
@@ -89,6 +93,7 @@ body {
     display: flex;
     gap: 20px;
     padding: 15px;
+    margin-top: 50px;
 }
 
 /* Dashboard Left Side */
@@ -105,6 +110,7 @@ body {
     display: flex;
     align-items: center;
     gap: 12px;
+    height: 46px;
     padding: 8px;
     border-radius: 8px;
     cursor: pointer;
@@ -123,6 +129,23 @@ body {
 .left-item img {
     height: 30px;
 }
+
+.fa-angle-down,
+.fa-angle-up {
+    padding: 5px;
+    text-align: center;
+    background-color: #D6D9DD;
+    border-radius: 50%;
+}
+
+/* #seeMoreElement,
+.see-less {
+    display: none;
+}
+
+#seeMoreElement.show {
+    display: block;
+} */
 
 /* Dashboard Center */
 .Dashboard-Mid {
@@ -179,19 +202,27 @@ body {
 
 /* Story Container */
 .story-container {
+    position: relative;
     display: flex;
     gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 5px;
 }
 
-.create-story {
+.create-story,
+.story {
+    position: relative;
     width: 120px;
     height: 200px;
     border-radius: 12px;
     background-color: white;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
     cursor: pointer;
     overflow: hidden;
-    position: relative;
+    flex-shrink: 0;
+}
+
+.story {
+    background-color: #e4e6eb;
 }
 
 .create-story img {
@@ -220,9 +251,38 @@ body {
 }
 
 .create-story p {
-    margin-top: 28px;
+    margin-top: 30px;
     font-size: 13px;
+    font-weight: 550;
     text-align: center;
+}
+
+.story-post img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+.profile-pic img {
+    position: absolute;
+    top: 10px;
+    left: 10%;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 4px solid #0866ff;
+    object-fit: cover;
+}
+
+.profile-name p {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    font-size: 13px;
+    font-weight: 550;
+    color: white;
 }
 
 /* Dashboard Right Side */
