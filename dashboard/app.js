@@ -16,25 +16,25 @@ icons.forEach(icon => {
     });
 });
 
-// // Left side See more & less
-// const seeMore = document.getElementById("seeMore");
-// const seeLess = document.getElementById("seeLess");
+// Left side See more & less
+const seeMore = document.getElementById("seeMore");
+const seeLess = document.getElementById("seeLess");
 
-// const seeMoreElements = document.querySelectorAll("#seeMoreElement");
+const seeMoreElements = document.querySelectorAll("#seeMoreElement");
 
-// seeMore.addEventListener("click", () => {
-//     seeMoreElements.forEach(el => {
-//         el.classList.add("show");
-//     });
-//     seeLess.style.display = "block";
-// })
+seeMore.addEventListener("click", () => {
+    seeMoreElements.forEach(el => {
+        el.classList.add("show");
+    });
+    seeLess.style.display = "flex";
+})
 
-// seeLess.addEventListener("click", () => {
-//     seeMoreElements.forEach(el => {
-//         el.classList.remove("show");
-//     });
-//     seeLess.style.display = "none";
-// })
+seeLess.addEventListener("click", () => {
+    seeMoreElements.forEach(el => {
+        el.classList.remove("show");
+    });
+    seeLess.style.display = "none";
+})
 
 // Stories
 let storyContainer = document.getElementById("story-container");
