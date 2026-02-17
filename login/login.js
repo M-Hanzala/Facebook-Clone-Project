@@ -112,6 +112,9 @@ const loginHandler = () => {
             setTimeout(() => {
                 window.location.href = '/dashboard/dashboard.html'
             }, 1200)
+
+            // Sets current user who login at localStorage.
+            localStorage.setItem("CurrentUser", JSON.stringify(user));
         }
     }
 
