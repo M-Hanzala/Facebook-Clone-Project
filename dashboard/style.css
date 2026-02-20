@@ -213,6 +213,10 @@ body {
     cursor: pointer;
 }
 
+.create-post-btn:hover {
+    background-color: #dddfe2;
+}
+
 .create-post img {
     height: 40px;
     border-radius: 50%;
