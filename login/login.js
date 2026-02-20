@@ -71,53 +71,64 @@ const loginHandler = () => {
     let getPrevUsers = JSON.parse(localStorage.getItem("users"));
     let isEmailExist = false;
     let isPasswordExist = false;
+    let loggedInUser = null;
 
-    for (var i = 0; i < getPrevUsers.length; i++) {
+    // Account does not exist, so create an account !
+    if (!getPrevUsers) {
+        email.classList.add("input-error");
+        emailIcon.style.display = "block";
+        emailError.style.display = "block";
+    }
+
+    for (var i = 0; i < getPrevUsers?.length; i++) {
         let user = getPrevUsers[i];
 
         if (user?.email == email.value.trim()) {
             isEmailExist = true;
-        }
-        if (user?.password == password.value.trim()) {
-            isPasswordExist = true;
-        }
 
-        // If email and password is not exist so show error
-        if (isEmailExist == false && isPasswordExist == false) {
-            email.classList.add("input-error");
-            emailIcon.style.display = "block";
-            emailError.style.display = "block";
-            password.classList.add("input-error");
-            passwordIcon.style.display = "block";
-        }
-
-        // If email exist and just password is incorrect so on show error on password
-        if (isEmailExist == true && isPasswordExist == false) {
-            email.classList.remove("input-error");
-            emailIcon.style.display = "none";
-            emailError.style.display = "none";
-            password.classList.add("input-error");
-            passwordIcon.style.display = "block";
-            passwordError.style.display = "block";
-        }
-
-        // If both exist so login successful
-        if (isEmailExist == true && isPasswordExist == true) {
-            sweetAlert("success", "Login Successfully", "Congratulations! Login Successfully");
-            email.classList.remove("input-error");
-            emailIcon.style.display = "none";
-            emailError.style.display = "none";
-            password.classList.remove("input-error");
-            passwordIcon.style.display = "none";
-            setTimeout(() => {
-                window.location.href = '/dashboard/dashboard.html'
-            }, 1200)
-
-            // Sets current user who login at localStorage.
-            localStorage.setItem("CurrentUser", JSON.stringify(user));
+            // Password matches from same user 
+            if (user?.password == password.value.trim()) {
+                isPasswordExist = true;
+                loggedInUser = user;
+                break;
+            }
         }
     }
 
+    // If email and password is not exist so show error
+    if (isEmailExist == false && isPasswordExist == false) {
+        email.classList.add("input-error");
+        emailIcon.style.display = "block";
+        emailError.style.display = "block";
+        password.classList.add("input-error");
+        passwordIcon.style.display = "block";
+    }
+
+    // If email exist and just password is incorrect so show error on password
+    if (isEmailExist == true && isPasswordExist == false) {
+        email.classList.remove("input-error");
+        emailIcon.style.display = "none";
+        emailError.style.display = "none";
+        password.classList.add("input-error");
+        passwordIcon.style.display = "block";
+        passwordError.style.display = "block";
+    }
+
+    // If both exist so login successful
+    if (isEmailExist == true && isPasswordExist == true) {
+        sweetAlert("success", "Login Successfully", "Congratulations! Login Successfully");
+        email.classList.remove("input-error");
+        emailIcon.style.display = "none";
+        emailError.style.display = "none";
+        password.classList.remove("input-error");
+        passwordIcon.style.display = "none";
+        setTimeout(() => {
+            window.location.href = '/dashboard/dashboard.html'
+        }, 1200)
+
+        // Sets current user who login, at localStorage.
+        localStorage.setItem("CurrentUser", JSON.stringify(loggedInUser));
+    }
 
 }
 loginBtn.addEventListener("click", loginHandler);
