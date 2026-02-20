@@ -27,6 +27,7 @@ seeMore.addEventListener("click", () => {
         el.classList.add("show");
     });
     seeLess.style.display = "flex";
+    seeMore.style.display = "none";
 })
 
 seeLess.addEventListener("click", () => {
@@ -34,6 +35,7 @@ seeLess.addEventListener("click", () => {
         el.classList.remove("show");
     });
     seeLess.style.display = "none";
+    seeMore.style.display = "flex";
 })
 
 // Stories
