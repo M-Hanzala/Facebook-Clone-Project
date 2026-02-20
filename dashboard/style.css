@@ -314,6 +314,25 @@ body {
     color: white;
 }
 
+/* Story Cont Scroll Bar edit */
+.story-container::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+.story-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.story-container::-webkit-scrollbar-thumb {
+    background-color: #bcc0c4;
+    border-radius: 10px;
+}
+
+.story-container::-webkit-scrollbar-thumb:hover {
+    background-color: #8a8d91;
+}
+
 /* Dashboard Right Side */
 .Dashboard-Right {
     width: 280px;

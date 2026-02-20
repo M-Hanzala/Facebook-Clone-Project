@@ -38,6 +38,14 @@ seeLess.addEventListener("click", () => {
     seeMore.style.display = "flex";
 })
 
+// Get account name from local storage object.
+let userLoggedIn = JSON.parse(localStorage.getItem("CurrentUser"));
+let profileName = document.getElementById("profileName");
+let createPostBtn = document.getElementById("create-post-btn");
+
+profileName.innerText = userLoggedIn.firstName + " " + userLoggedIn.surName;
+createPostBtn.innerText = "What's on your mind, " + userLoggedIn.firstName + "?";
+
 // Stories
 let storyContainer = document.getElementById("story-container");
 
