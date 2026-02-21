@@ -337,6 +337,75 @@ body {
     background-color: #8a8d91;
 }
 
+/* Post Container */
+.post-container {
+    border-radius: 12px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: white;
+    margin-bottom: 20px;
+}
+
+.post-container .post-header .profile-info img {
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.post-container .post-header {
+    padding: 15px;
+}
+
+.post-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-info {
+    display: flex;
+    gap: 5px;
+}
+
+.profile-info p {
+    font-weight: 550;
+    cursor: pointer;
+}
+
+.post-time,
+.post-icon {
+    color: #6C6F73;
+}
+
+.post-icon i {
+    padding: 0 8px;
+    cursor: pointer;
+}
+
+.post-caption {
+    padding: 0 15px;
+    margin-bottom: 10px;
+}
+
+.post-container .post img {
+    height: 500px;
+    width: 100%;
+    min-width: 500px;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.post-footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px 50px;
+    color: #6C6F73;
+}
+/* Yaha pr hu main !!!!!!!!!! */
+
+.post-footer div:hover {
+    cursor: pointer;
+    background-color: #E4E6EB;
+}
+
 /* Dashboard Right Side */
 .Dashboard-Right {
     width: 280px;
