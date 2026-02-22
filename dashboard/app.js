@@ -12,6 +12,8 @@ let postBtn = document.getElementById("postBtn");
 let postContainer = document.getElementById("post-container");
 let postCloseIcon = document.getElementById("postCloseIcon");
 
+let searchInput = document.getElementById("searchInput");
+
 // Facebook navbar icon hovers
 icons.forEach(icon => {
     homeIcon.style.color = "#0866ff";
@@ -305,6 +307,27 @@ function updateTimes() {
     });
 }
 setInterval(updateTimes, 60000);
+
+const searchHandler = () => {
+    let value = document.getElementById("searchInput").value.trim().toLowerCase();
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    if (!value) {
+        renderPosts();
+        return;
+    }
+
+    let filteredPosts = posts.filter(post =>
+        post.caption?.toLowerCase().includes(value) ||
+        post.userName?.toLowerCase().includes(value)
+    );
+
+    postContainer.innerHTML = "";
+    filteredPosts.forEach(post => {
+        postContainer.innerHTML += createPostHtml(post);
+    });
+}
+searchInput.addEventListener("input", searchHandler);
 
 // postCloseIcon.addEventListener("click", () => {
 //     localStorage.removeItem()
