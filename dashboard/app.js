@@ -1,6 +1,14 @@
 const icons = document.querySelectorAll(".header-mid i");
 const homeIcon = document.getElementById("home");
 
+let userLoggedIn = JSON.parse(localStorage.getItem("CurrentUser"));
+let profileName = document.getElementById("profileName");
+let createPostBtn = document.getElementById("create-post-btn");
+
+const createPostDialogue = document.getElementById("create-post-dialogue");
+const postDialCancelIcon = document.getElementById("post-dial-cancel");
+
+// Facebook navbar icon hovers
 icons.forEach(icon => {
     homeIcon.style.color = "#0866ff";
 
@@ -39,12 +47,17 @@ seeLess.addEventListener("click", () => {
 })
 
 // Get account name from local storage object.
-let userLoggedIn = JSON.parse(localStorage.getItem("CurrentUser"));
-let profileName = document.getElementById("profileName");
-let createPostBtn = document.getElementById("create-post-btn");
-
 profileName.innerText = userLoggedIn.firstName + " " + userLoggedIn.surName;
 createPostBtn.innerText = "What's on your mind, " + userLoggedIn.firstName + "?";
+
+// Create post button handler 
+createPostBtn.addEventListener("click", () => {
+    createPostDialogue.style.display = "flex";
+})
+
+postDialCancelIcon.addEventListener("click", () => {
+    createPostDialogue.style.display = "none";
+})
 
 // Stories
 let storyContainer = document.getElementById("story-container");

@@ -242,12 +242,12 @@
 
     </div>
 
-    <div class="create-post-dialogue-overlay">
+    <div class="create-post-dialogue-overlay" id="create-post-dialogue">
 
         <div class="create-post-dialogue">
             <div class="post-dialogue-header">
                 <p>Create Post</p>
-                <i class="fa-solid fa-x"></i>
+                <i class="fa-solid fa-x" id="post-dial-cancel"></i>
             </div>
 
             <div class="post-dialogue-content">
@@ -256,8 +256,8 @@
                     <p>Hanzala Yaseen</p>
                 </div>
                 <form>
-                    <input type="text" placeholder="What's on your mind, Hanzala?">
-                    <input type="text" placeholder="Add your post URL...">
+                    <input type="text" class="post-dialogue-caption" placeholder="What's on your mind, Hanzala?">
+                    <input type="text" class="post-dialogue-url" placeholder="Add your post URL...">
                     <button>Post</button>
                 </form>
             </div>
