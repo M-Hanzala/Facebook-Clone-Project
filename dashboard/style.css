@@ -376,8 +376,13 @@ body {
 }
 
 .post-icon i {
-    padding: 0 8px;
+    padding:  8px;
     cursor: pointer;
+    border-radius: 50%;
+}
+
+.post-icon i:hover {
+    background-color: #F2F4F7;
 }
 
 .post-caption {
@@ -396,10 +401,17 @@ body {
 .post-footer {
     display: flex;
     justify-content: space-between;
-    padding: 15px 50px;
+    padding: 5px;
     color: #6C6F73;
 }
-/* Yaha pr hu main !!!!!!!!!! */
+
+.post-footer div {
+    text-align: center;
+    height: 40px;
+    width: 100%;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
 
 .post-footer div:hover {
     cursor: pointer;
