@@ -175,48 +175,14 @@
                     <p>Create story</p>
                 </div>
 
-            </div>
-
-            <div class="post-container">
-
-                <div class="post-header">
-                    <div class="profile-info">
-                        <div><img src="../assets/Profile-Pic.png" alt=""></div>
-                        <div>
-                            <p>Hanzala Yaseen</p>
-                            <p class="post-time">20h</p>
-                        </div>
-                    </div>
-                    <div class="post-icon">
-                        <i class="fa-solid fa-ellipsis"></i>
-                        <i class="fa-solid fa-x"></i>
-                    </div>
-                </div>
-
-                <div class="post-caption">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores, laboriosam.</p>
-                </div>
-
-                <div class="post">
-                    <img src="https://thumbs.dreamstime.com/b/merry-christmas-happy-new-year-12013550.jpg" alt="">
-                </div>
-
-                <div class="post-footer">
-                    <div>
-                        <i class="fa-regular fa-thumbs-up"></i>
-                        Like
-                    </div>
-                    <div>
-                        <i class="fa-regular fa-comment"></i>
-                        Comment
-                    </div>
-                    <div>
-                        <i class="fa-regular fa-share-from-square"></i>
-                        Share
-                    </div>
-                </div>
+                <!-- Story Through Map JS -->
 
             </div>
+
+            <div id="post-container">
+                <!-- Post Through JS -->
+            </div>
+
         </div>
 
         <!-- RIGHT -->
@@ -253,12 +219,14 @@
             <div class="post-dialogue-content">
                 <div class="head">
                     <img src="../assets/Profile-Pic.png" alt="">
-                    <p>Hanzala Yaseen</p>
+                    <p id="postDialUsername">Hanzala Yaseen</p>
                 </div>
                 <form>
-                    <input type="text" class="post-dialogue-caption" placeholder="What's on your mind, Hanzala?">
-                    <input type="text" class="post-dialogue-url" placeholder="Add your post URL...">
-                    <button>Post</button>
+                    <input type="text" class="post-dialogue-caption" id="postCaptionFromDial"
+                        placeholder="What's on your mind, Hanzala?">
+                    <input type="text" class="post-dialogue-url" id="postUrlFromDial"
+                        placeholder="Add your post URL...">
+                    <button id="postBtn">Post</button>
                 </form>
             </div>
         </div>

@@ -7,6 +7,9 @@ let createPostBtn = document.getElementById("create-post-btn");
 
 const createPostDialogue = document.getElementById("create-post-dialogue");
 const postDialCancelIcon = document.getElementById("post-dial-cancel");
+let postBtn = document.getElementById("postBtn");
+
+let postContainer = document.getElementById("post-container");
 
 // Facebook navbar icon hovers
 icons.forEach(icon => {
@@ -165,6 +168,7 @@ const stories = [
     }
 ];
 
+// Create story html through map
 const createStoryHTMLThroughMap = () => {
     const returnedArr = stories.map((story) => {
         return `
@@ -184,3 +188,85 @@ const createStoryHTMLThroughMap = () => {
     storyContainer.innerHTML += returnedArr.join("");
 };
 createStoryHTMLThroughMap();
+
+// Create post html
+const createPostHtml = (post) => {
+    return `    <div class="post-container">
+                <div class="post-header">
+                    <div class="profile-info">
+                        <div><img src="../assets/Profile-Pic.png" alt=""></div>
+                        <div>
+                            <p>${post.userName}</p>
+                            <p class="post-time">20h</p>
+                        </div>
+                    </div>
+                    <div class="post-icon">
+                        <i class="fa-solid fa-ellipsis"></i>
+                        <i class="fa-solid fa-x"></i>
+                    </div>
+                </div>
+
+                <div class="post-caption">
+                    <p>${post.caption}</p>
+                </div>
+
+                <div class="post">
+                    <img src="${post.imageUrl}">
+                </div>
+
+                <div class="post-footer">
+                    <div>
+                        <i class="fa-regular fa-thumbs-up"></i>
+                        Like
+                    </div>
+                    <div>
+                        <i class="fa-regular fa-comment"></i>
+                        Comment
+                    </div>
+                    <div>
+                        <i class="fa-regular fa-share-from-square"></i>
+                        Share
+                    </div>
+                </div> 
+                </div>    `
+}
+
+const savePostToLocalStorage = (post) => {
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    posts.unshift(post); //newest post first
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
+
+const renderPosts = () => {
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+    postContainer.innerHTML = "";
+
+    posts.forEach(post => {
+        postContainer.innerHTML += createPostHtml(post);
+    })
+}
+
+postBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    const caption = document.getElementById("postCaptionFromDial").value.trim();
+    const imageUrl = document.getElementById("postUrlFromDial").value.trim();
+
+    if (!caption && !imageUrl) return;
+
+    const newPost = {
+        userName: `${userLoggedIn.firstName} ${userLoggedIn.surName}`,
+        caption: caption,
+        imageUrl: imageUrl
+    }
+
+    savePostToLocalStorage(newPost);
+    renderPosts();
+
+    // clear inputs
+    document.getElementById("postCaptionFromDial").value = "";
+    document.getElementById("postUrlFromDial").value = "";
+})
+
+// Load post on page refresh
+document.addEventListener("DOMContentLoaded", renderPosts);
