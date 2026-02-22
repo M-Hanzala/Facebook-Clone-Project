@@ -10,6 +10,7 @@ const postDialCancelIcon = document.getElementById("post-dial-cancel");
 let postBtn = document.getElementById("postBtn");
 
 let postContainer = document.getElementById("post-container");
+let postCloseIcon = document.getElementById("postCloseIcon");
 
 // Facebook navbar icon hovers
 icons.forEach(icon => {
@@ -197,12 +198,12 @@ const createPostHtml = (post) => {
                         <div><img src="../assets/Profile-Pic.png" alt=""></div>
                         <div>
                             <p>${post.userName}</p>
-                            <p class="post-time">Just now</p>
+                            <p class="post-time" data-time="${post.time}"></p>
                         </div>
                     </div>
                     <div class="post-icon">
                         <i class="fa-solid fa-ellipsis"></i>
-                        <i class="fa-solid fa-x"></i>
+                        <i class="fa-solid fa-x" id="postCloseIcon"></i>
                     </div>
                 </div>
 
@@ -244,6 +245,8 @@ const renderPosts = () => {
     posts.forEach(post => {
         postContainer.innerHTML += createPostHtml(post);
     })
+
+    updateTimes();
 }
 
 postBtn.addEventListener("click", (e) => {
@@ -251,13 +254,15 @@ postBtn.addEventListener("click", (e) => {
 
     const caption = document.getElementById("postCaptionFromDial").value.trim();
     const imageUrl = document.getElementById("postUrlFromDial").value.trim();
+    const time = new Date().toISOString()
 
     if (!caption && !imageUrl) return;
 
     const newPost = {
         userName: `${userLoggedIn.firstName} ${userLoggedIn.surName}`,
         caption: caption,
-        imageUrl: imageUrl
+        imageUrl: imageUrl,
+        time: time
     }
 
     savePostToLocalStorage(newPost);
@@ -271,24 +276,36 @@ postBtn.addEventListener("click", (e) => {
 // Load post on page refresh
 document.addEventListener("DOMContentLoaded", renderPosts);
 
-setInterval(() => {
+// Post Time Handler
+function updateTimes() {
     let times = document.querySelectorAll(".post-time");
 
     times.forEach(time => {
-        let current = time.innerText;
+        let postDate = new Date(time.dataset.time);
+        let now = new Date();
 
-        if (current === "Just now") {
-            time.innerText = "1m";
-        } else if (current.includes("m")) {
-            let mins = parseInt(current);
-            if (mins < 59) {
-                time.innerText = (mins + 1) + "m";
-            } else {
-                time.innerText = "1h";
-            }
-        } else if (current.includes("h")) {
-            let hrs = parseInt(current);
-            time.innerText = (hrs + 1) + "h";
+        let diffMs = now - postDate;
+
+        let minutes = Math.floor(diffMs / 60000);
+        let hours = Math.floor(minutes / 60);
+        let days = Math.floor(hours / 24);
+        let weeks = Math.floor(days / 7);
+
+        if (minutes < 1) {
+            time.innerText = "Just now";
+        } else if (minutes < 60) {
+            time.innerText = minutes + "m";
+        } else if (hours < 24) {
+            time.innerText = hours + "h";
+        } else if (days < 7) {
+            time.innerText = days + "d";
+        } else {
+            time.innerText = weeks + "w";
         }
     });
-}, 60000);
+}
+setInterval(updateTimes, 60000);
+
+// postCloseIcon.addEventListener("click", () => {
+//     localStorage.removeItem()
+// })
