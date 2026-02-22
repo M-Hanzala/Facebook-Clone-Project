@@ -197,7 +197,7 @@ const createPostHtml = (post) => {
                         <div><img src="../assets/Profile-Pic.png" alt=""></div>
                         <div>
                             <p>${post.userName}</p>
-                            <p class="post-time">20h</p>
+                            <p class="post-time">Just now</p>
                         </div>
                     </div>
                     <div class="post-icon">
@@ -270,3 +270,25 @@ postBtn.addEventListener("click", (e) => {
 
 // Load post on page refresh
 document.addEventListener("DOMContentLoaded", renderPosts);
+
+setInterval(() => {
+    let times = document.querySelectorAll(".post-time");
+
+    times.forEach(time => {
+        let current = time.innerText;
+
+        if (current === "Just now") {
+            time.innerText = "1m";
+        } else if (current.includes("m")) {
+            let mins = parseInt(current);
+            if (mins < 59) {
+                time.innerText = (mins + 1) + "m";
+            } else {
+                time.innerText = "1h";
+            }
+        } else if (current.includes("h")) {
+            let hrs = parseInt(current);
+            time.innerText = (hrs + 1) + "h";
+        }
+    });
+}, 60000);
