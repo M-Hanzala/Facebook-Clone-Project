@@ -381,6 +381,10 @@ body {
     border-radius: 50%;
 }
 
+.fa-solid .fa-thumbs-up {
+    color: #005FD5;
+}
+
 .post-icon i:hover {
     background-color: #F2F4F7;
 }

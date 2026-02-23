@@ -218,7 +218,7 @@ const createPostHtml = (post) => {
                 </div>
 
                 <div class="post-footer">
-                    <div>
+                    <div class="like-btn">
                         <i class="fa-regular fa-thumbs-up"></i>
                         Like
                     </div>
@@ -308,6 +308,30 @@ function updateTimes() {
 }
 setInterval(updateTimes, 60000);
 
+// Like Handler
+postContainer.addEventListener("click", (e) => {
+    const likeBtn = e.target.closest(".like-btn");
+    if (!likeBtn) return;
+
+    const icon = likeBtn.querySelector("i");
+
+    if (icon.classList.contains("fa-regular")) {
+        icon.classList.remove("fa-regular");
+        icon.classList.add("fa-solid");
+        likeBtn.style.color = "#005FD5";
+    } else {
+        icon.classList.remove("fa-solid");
+        icon.classList.add("fa-regular");
+        likeBtn.style.color = "#6C6F73";
+    }
+
+    // icon.classList.toggle("fa-solid");
+    // icon.classList.toggle("fa-regular");
+
+    console.log("liked");
+})
+
+// Search handler through filter and include method
 const searchHandler = () => {
     let value = document.getElementById("searchInput").value.trim().toLowerCase();
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
