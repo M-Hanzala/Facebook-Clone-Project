@@ -7,6 +7,8 @@ let createPostBtn = document.getElementById("create-post-btn");
 
 const createPostDialogue = document.getElementById("create-post-dialogue");
 const postDialCancelIcon = document.getElementById("post-dial-cancel");
+let postDialUsername = document.getElementById("postDialUsername");
+let caption = document.getElementById("postCaptionFromDial");
 let postBtn = document.getElementById("postBtn");
 
 let postContainer = document.getElementById("post-container");
@@ -327,8 +329,6 @@ postContainer.addEventListener("click", (e) => {
 
     // icon.classList.toggle("fa-solid");
     // icon.classList.toggle("fa-regular");
-
-    console.log("liked");
 })
 
 // Search handler through filter and include method
@@ -352,6 +352,9 @@ const searchHandler = () => {
     });
 }
 searchInput.addEventListener("input", searchHandler);
+
+postDialUsername.innerText = userLoggedIn.firstName + " " + userLoggedIn.surName;
+caption.placeholder = "What's on your mind, " + userLoggedIn.firstName + "?";
 
 // postCloseIcon.addEventListener("click", () => {
 //     localStorage.removeItem()
