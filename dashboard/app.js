@@ -177,7 +177,12 @@ const stories = [
 const createStoryHTMLThroughMap = () => {
     const returnedArr = stories.map((story) => {
         return `
-                <div class="story">
+                <div class="story"
+                    data-name="${story.fullName}"
+                    data-profile="${story.profilePic}"
+                    data-image="${story.storyFile}"
+                >
+
                     <div class="story-post">
                         <img src="${story.storyFile}" alt="" loading="lazy">
                     </div>                    
@@ -356,6 +361,27 @@ searchInput.addEventListener("input", searchHandler);
 postDialUsername.innerText = userLoggedIn.firstName + " " + userLoggedIn.surName;
 caption.placeholder = "What's on your mind, " + userLoggedIn.firstName + "?";
 
-// postCloseIcon.addEventListener("click", () => {
-//     localStorage.removeItem()
-// })
+// Story Dialogue Open when story clicked
+const openStoryDialogue = (name, profilePic, image) => {
+    document.getElementById("storyDialUsername").innerText = name;
+    document.getElementById("storyProfilePic").src = profilePic;
+    document.getElementById("storyPost").src = image;
+
+    document.querySelector(".story-dialogue-overlay").style.display = "flex";
+};
+
+// Onclick
+storyContainer.addEventListener("click", (e) => {
+    const story = e.target.closest(".story");
+    if (!story) return;
+
+    const name = story.dataset.name;
+    const profilePic = story.dataset.profile;
+    const image = story.dataset.image;
+
+    openStoryDialogue(name, profilePic, image);
+})
+
+document.getElementById("closeStory").addEventListener("click", () => {
+    document.querySelector(".story-dialogue-overlay").style.display = "none";
+});
