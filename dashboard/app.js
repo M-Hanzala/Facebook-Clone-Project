@@ -12,7 +12,6 @@ let caption = document.getElementById("postCaptionFromDial");
 let postBtn = document.getElementById("postBtn");
 
 let postContainer = document.getElementById("post-container");
-let postCloseIcon = document.getElementById("postCloseIcon");
 
 let searchInput = document.getElementById("searchInput");
 
@@ -201,7 +200,13 @@ createStoryHTMLThroughMap();
 
 // Create post html
 const createPostHtml = (post) => {
-    return `    <div class="post-container">
+    const imageHtml = post.imageUrl ?
+        ` <div class="post">
+            <img src="${post.imageUrl}">
+          </div> `
+        : "";
+
+    return `    <div class="post-container" data-id="${post.id}">
                 <div class="post-header">
                     <div class="profile-info">
                         <div><img src="../assets/Profile-Pic.png" alt=""></div>
@@ -212,7 +217,7 @@ const createPostHtml = (post) => {
                     </div>
                     <div class="post-icon">
                         <i class="fa-solid fa-ellipsis"></i>
-                        <i class="fa-solid fa-x" id="postCloseIcon"></i>
+                        <i class="fa-solid fa-x post-delete"></i>
                     </div>
                 </div>
 
@@ -220,9 +225,7 @@ const createPostHtml = (post) => {
                     <p>${post.caption}</p>
                 </div>
 
-                <div class="post">
-                    <img src="${post.imageUrl}">
-                </div>
+                ${imageHtml}
 
                 <div class="post-footer">
                     <div class="like-btn">
@@ -261,15 +264,16 @@ const renderPosts = () => {
 postBtn.addEventListener("click", (e) => {
     e.preventDefault();
 
-    const caption = document.getElementById("postCaptionFromDial").value.trim();
+    const postCaption = document.getElementById("postCaptionFromDial").value.trim();
     const imageUrl = document.getElementById("postUrlFromDial").value.trim();
     const time = new Date().toISOString()
 
-    if (!caption && !imageUrl) return;
+    if (!postCaption && !imageUrl) return;
 
     const newPost = {
+        id: Date.now(),
         userName: `${userLoggedIn.firstName} ${userLoggedIn.surName}`,
-        caption: caption,
+        caption: postCaption,
         imageUrl: imageUrl,
         time: time
     }
@@ -335,6 +339,23 @@ postContainer.addEventListener("click", (e) => {
     // icon.classList.toggle("fa-solid");
     // icon.classList.toggle("fa-regular");
 })
+
+// Delete post on click "X"
+postContainer.addEventListener("click", (e) => {
+    const deleteBtn = e.target.closest(".post-delete");
+    if (!deleteBtn) return;
+
+    const postDiv = deleteBtn.closest(".post-container");
+    const postId = postDiv.dataset.id;
+
+    let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    posts = posts.filter(p => p.id != postId);
+
+    localStorage.setItem("posts", JSON.stringify(posts));
+
+    postDiv.remove(); // instant UI delete
+});
 
 // Search handler through filter and include method
 const searchHandler = () => {
