@@ -9,6 +9,7 @@ body {
     background-color: #f0f2f5;
     height: 100vh;
     width: 100%;
+    overflow-x: hidden;
 }
 
 .container {
@@ -23,13 +24,12 @@ body {
 }
 
 .logo>img {
-    height: 100px;
     width: 280px;
 }
 
 .reg-box {
-    /* height: 800px; */
-    width: 400px;
+    width: 100%;
+    max-width: 400px;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 8px;
     background-color: white;
@@ -62,10 +62,9 @@ hr {
 }
 
 .name-fields input {
-    height: 100%;
     width: 100%;
     border-radius: 6px;
-    padding-left: 8px;
+    padding: 8px;
     border: 1px solid #dddfe2;
     font-size: 16px;
 }
@@ -105,7 +104,6 @@ hr {
 }
 
 .genderBox {
-    height: 40px;
     display: flex;
     gap: 20px;
     justify-content: space-between;
@@ -124,20 +122,15 @@ hr {
     width: 30%;
     display: flex;
     align-items: center;
+    padding: 8px 5px;
     justify-content: center;
     border-radius: 6px;
-}
-
-.emailPass {
-    /* margin-top: 15px; */
-    height: 80px;
 }
 
 .emailPass input {
     border: 1px solid #dddfe2;
     margin-top: 10px;
     padding: 8px;
-    height: 40px;
     width: 100%;
     font-size: 16px;
     border-radius: 6px;
@@ -162,7 +155,6 @@ hr {
 
 .signUp-btn {
     width: 100%;
-    height: 35px;
     margin: 10px auto;
     display: flex;
     justify-content: center;
@@ -177,6 +169,7 @@ hr {
     color: white;
     font-weight: bold;
     font-size: 18px;
+    padding: 10px;
     cursor: pointer;
 }
 
@@ -198,7 +191,6 @@ hr {
 
 .input-wrapper {
     position: relative;
-    height: 40px;
     width: 50%;
 }
 
@@ -226,7 +218,6 @@ select.input-error,
     background-color: #BE5854;
     color: white;
     font-size: 12px;
-    padding: 10px 12px;
     border-radius: 4px;
     display: none;
 }
@@ -238,7 +229,6 @@ select.input-error,
     background-color: #BE5854;
     color: white;
     font-size: 12px;
-    padding: 10px 12px;
     border-radius: 4px;
     display: none;
 }
@@ -353,6 +343,74 @@ select.input-error,
     display: none;
 }
 
-/* #firstName:focus+.first-name-error {
-    display: block;
-} */
+@media (max-width: 480px) {
+
+    .name-fields {
+        gap: 12px;
+    }
+
+    .input-wrapper {
+        width: 100%;
+    }
+
+    .genderBox {
+        gap: 10px;
+        height: auto;
+    }
+
+    .male,
+    .female,
+    .other {
+        width: 100%;
+        padding: 8px 0;
+    }
+
+    .dateOfBirthBox {
+        height: auto;
+        gap: 10px;
+    }
+
+    .dateOfBirthBox select {
+        width: 100%;
+    }
+
+    .signUp-btn button {
+        width: 100%;
+    }
+
+    .logo>img {
+        width: 200px;
+        height: auto;
+    }
+}
+
+@media (max-width: 1020px) {
+
+    .first-name-error,
+    .surname-error,
+    .dob-error,
+    .gender-error,
+    .email-error,
+    .pass-error {
+        position: static !important;
+        /* bottom: 20px;
+        left: 0; */
+        width: 100%;
+        margin-top: 5px;
+        background-color: #BE5854;
+        color: white;
+        font-size: 12px;
+        padding: 5px;
+        border-radius: 4px;
+        display: none;
+    }
+
+    .name-fields i {
+        top: 18%;
+    }
+
+    .dob-error,
+    .gender-error {
+        margin-bottom: 5px;
+    }
+}
