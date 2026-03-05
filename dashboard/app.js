@@ -346,13 +346,13 @@ postContainer.addEventListener("click", (e) => {
     if (!deleteBtn) return;
 
     const postDiv = deleteBtn.closest(".post-container");
-    const postId = postDiv.dataset.id;
+    const postId = Number(postDiv.dataset.id);
 
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
-    posts = posts.filter(p => p.id != postId);
+    let filteredPosts = posts.filter(p => p.id != postId);
 
-    localStorage.setItem("posts", JSON.stringify(posts));
+    localStorage.setItem("posts", JSON.stringify(filteredPosts));
 
     postDiv.remove(); // instant UI delete
 });
