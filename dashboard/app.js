@@ -15,6 +15,9 @@ let postContainer = document.getElementById("post-container");
 
 let searchInput = document.getElementById("searchInput");
 
+let userLogoutWay = document.getElementById("userLogoutWay");
+let logoutBtn = document.getElementById("logoutBtn");
+
 // Facebook navbar icon hovers
 icons.forEach(icon => {
     homeIcon.style.color = "#0866ff";
@@ -406,3 +409,18 @@ storyContainer.addEventListener("click", (e) => {
 document.getElementById("closeStory").addEventListener("click", () => {
     document.querySelector(".story-dialogue-overlay").style.display = "none";
 });
+
+// Log out Handler 
+userLogoutWay.addEventListener("click", () => {
+
+    if (logoutBtn.style.display === "block") {
+        logoutBtn.style.display = "none";
+    } else {
+        logoutBtn.style.display = "block";
+    }
+
+});
+
+logoutBtn.addEventListener("click", () => {
+    window.location.href = '/login/login.html';
+})
