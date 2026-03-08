@@ -18,6 +18,9 @@ let searchInput = document.getElementById("searchInput");
 let userLogoutWay = document.getElementById("userLogoutWay");
 let logoutBtn = document.getElementById("logoutBtn");
 
+let mobileMenu = document.getElementById("mobileMenu");
+let dashboardLeft = document.querySelector(".Dashboard-Left");
+
 // Facebook navbar icon hovers
 icons.forEach(icon => {
     homeIcon.style.color = "#0866ff";
@@ -424,3 +427,10 @@ userLogoutWay.addEventListener("click", () => {
 logoutBtn.addEventListener("click", () => {
     window.location.href = '/login/login.html';
 })
+
+// Bars Icon, When clicked dashboard left appears
+mobileMenu.addEventListener("click", () => {
+
+    dashboardLeft.classList.toggle("show");
+
+});

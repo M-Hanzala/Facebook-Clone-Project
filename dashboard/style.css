@@ -9,6 +9,11 @@ body {
     background-color: #F2F4F7;
 }
 
+img {
+    max-width: 100%;
+    height: auto;
+}
+
 .header {
     display: flex;
     justify-content: space-between;
@@ -115,7 +120,7 @@ body {
 .Dashboard-Left {
     display: flex;
     flex-direction: column;
-    width: 276px;
+    width: 25%;
     gap: 8px;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -192,14 +197,10 @@ body {
     flex-direction: column;
     justify-content: center;
     height: 100%;
-    width: 710px;
-    max-width: 100%;
-    padding: 10px 92px;
+    width: 55%;
+    max-width: 550px;
+    margin: auto;
     gap: 10px;
-    /* position: sticky;
-    top: 56px;
-    overflow-y: auto;
-    height: calc(100vh - 56px); */
 }
 
 .create-post {
@@ -248,7 +249,6 @@ body {
 
 /* Story Container */
 .story-container {
-    /* position: relative; */
     display: flex;
     gap: 10px;
     overflow-x: auto;
@@ -356,6 +356,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: white;
     margin-bottom: 20px;
+    width: 100%;
 }
 
 .post-container .post-header .profile-info img {
@@ -408,9 +409,9 @@ body {
 }
 
 .post-container .post img {
-    height: 500px;
+    max-height: 500px;
+    height: auto;
     width: 100%;
-    min-width: 500px;
     object-fit: cover;
     cursor: pointer;
 }
@@ -437,7 +438,7 @@ body {
 
 /* Dashboard Right Side */
 .Dashboard-Right {
-    width: 280px;
+    width: 25%;
     top: 70px;
     padding: 20px 0px 4px;
     position: sticky;
@@ -686,4 +687,202 @@ body {
 
 .story-dialogue-overlay {
     display: none;
+}
+
+#mobileMenu {
+    font-size: 20px;
+    padding: 8px;
+    border-radius: 50%;
+    background: #F0F2F5;
+    cursor: pointer;
+    display: none;
+}
+
+/* Responsiveness */
+@media (max-width: 1100px) {
+
+    .Dashboard-Mid {
+        padding: 10px 40px;
+    }
+
+}
+
+@media (max-width: 1030px) {
+
+    .header-left img {
+        height: 30px;
+    }
+
+    .header-left input {
+        height: 40px;
+        padding: 6px 10px;
+        font-size: 13px;
+    }
+
+    .header-mid i {
+        font-size: 22px;
+        padding: 8px 30px;
+    }
+
+    .header-right i {
+        font-size: 18px;
+        padding: 8px;
+    }
+
+    .header-right img {
+        height: 30px;
+    }
+
+
+    .Profile-Pic i {
+        font-size: 10px;
+        padding: 0;
+    }
+
+}
+
+@media (max-width: 970px) {
+
+    .Dashboard-Right {
+        display: none;
+    }
+
+    .Dashboard-Left {
+        width: 30%;
+    }
+
+    .Dashboard-Mid {
+        width: 70%;
+        padding: 0;
+    }
+
+}
+
+@media (max-width: 860px) {
+
+    .h-right-i {
+        display: none;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+
+    .header-mid i {
+        font-size: 22px;
+        padding: 8px 20px;
+    }
+
+    .create-post img {
+        height: 35px;
+    }
+
+    .Nav-Icons img {
+        height: 20px;
+    }
+
+}
+
+@media (max-width:640px) {
+
+    #searchInput {
+        display: none;
+    }
+
+    #mobileMenu {
+        display: block;
+    }
+
+    .Dashboard-Left {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 56px;
+        width: 260px;
+        background: white;
+        z-index: 999;
+        height: 100vh;
+    }
+
+    .Dashboard-Left.show {
+        display: flex;
+    }
+
+    .Dashboard-Mid {
+        width: 100%;
+        max-width: 100%;
+        padding: 5px;
+    }
+
+    .main {
+        gap: 0;
+        padding: 5px;
+    }
+
+    .header-mid i {
+        padding: 8px 15px;
+        font-size: 20px;
+    }
+
+}
+
+@media (max-width:480px) {
+
+    .header {
+        padding: 5px;
+    }
+
+    .create-story,
+    .story {
+        width: 100px;
+        height: 170px;
+    }
+
+    .create-story img {
+        height: 125px;
+    }
+
+    .log-out {
+        padding: 4px;
+        font-size: 13px;
+    }
+
+    .story-dialogue {
+        width: 400px;
+        height: 70vh;
+        margin: 5px 10px;
+    }
+
+    .post-dialogue-header {
+        padding: 12px 15px;
+    }
+
+}
+
+@media (max-width:430px) {
+
+    .header-mid i {
+        padding: 8px 10px;
+        font-size: 18px;
+    }
+
+    .create-post-btn {
+        font-size: 12px;
+    }
+
+    .post-footer div {
+        height: 30px;
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+
+}
+
+@media (max-width:360px) {
+
+    .header-mid {
+        display: none;
+    }
+
 }
