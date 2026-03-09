@@ -369,8 +369,7 @@ const signupUserValueStore = () => {
         users.push(userObj);  //overwrite nhi add horaha hai 
         localStorage.setItem("users", JSON.stringify(users));
 
-        let loginUser = JSON.parse(localStorage.getItem("CurrentUser")) || [];
-        localStorage.setItem("CurrentUser", JSON.stringify(loginUser));
+        localStorage.setItem("CurrentUser", JSON.stringify(userObj));
 
         sweetAlert("success", "Sign Up Done", "Congratulations! Signup Successfully")
         setTimeout(() => {
